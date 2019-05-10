@@ -1,0 +1,21 @@
+extends ../layout
+
+block vars
+    - var title = '翻找垃圾中...'
+    - var location = '位置：高角 / 堆土塔'
+
+append stylesheets
+    link(rel='stylesheet' href='https://unpkg.com/highlightjs@9.12.0/styles/atom-one-light.css')
+
+block content
+    .columns.centered
+        main.col-6.col-5-tablet.col-4-desktop
+            article.post
+                if user
+                    a.edit-icon(href=post.id + '/edit') 编辑
+                h1.title= post.title
+                .information
+                    .time= post.time
+                    .category: a= post.category.name
+                .content
+                    | !{post.content}
