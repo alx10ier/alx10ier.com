@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // TODO: production database in secrete
-const connString = 'mongodb://localhost:27017/alx10ier';
+const connString = 'mongodb://localhost:27017/synapse';
 
 module.exports = () => {
   mongoose.set('useFindAndModify', false)
