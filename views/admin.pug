@@ -1,0 +1,89 @@
+extends layout
+
+block vars
+    - var title = '管理垃圾中...'
+    - var location = '位置：高角 / 堆土塔'
+
+block content
+        main.admin-panel
+            form
+                //.admin-toolbar
+                    div 全选
+                    div 删除
+                    div 公开
+                    div 隐藏
+                for category in categories
+                    .admin-title=category.name
+                        //span: a 全选
+                    ul.admin-menu
+                        - function compareByTime( a, b ) {
+                        -   if (a.timestamp < b.timestamp){
+                        -     return 1;
+                        -   }
+                        -   if (a.timestamp > b.timestamp){
+                        -     return -1;
+                        -   }
+                        -   return 0;
+                        - }
+                        for post in category.posts.sort(compareByTime)
+                            - let date = new Date(post.timestamp)
+                            - date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+                            li.admin-menu-item
+                                //input(type='checkbox' name='selected' value=post.id)
+                                .title: a(href='/posts/' + post.id)=post.title
+                                //.id=post.id
+                                .date=date
+                                .public
+                                    if post.public
+                                        i.far.fa-eye
+                                    else
+                                        i.far.fa-eye-slash
+                                .actions
+                                    a(href='/posts/' + post.id + '/edit').action 编辑
+                                    if post.public
+                                        a(data-id=post.id data-public="false").action.change-status 隐藏
+                                    else
+                                        a(data-id=post.id data-public="true").action.change-status 发布
+                                    a(data-id=post.id).action.delete 删除
+
+append stylesheets
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous")
+
+append javascripts
+    script.
+        $('.action.delete').on('click', function () {
+          if (confirm('确认删除？')) {
+            let id = $(this).data('id')
+            let parent = $(this).parents('.admin-menu-item')
+            $.ajax({
+              method: 'delete',
+              url: '/posts/' + id,
+              success: function (res) {
+                console.log(res)
+                if (res.result === 'success') {
+                  parent.remove()
+                }
+              }
+            })
+          }
+        })
+
+        $('.action.change-status').on('click', function () {
+          let id = $(this).data('id')
+          let isPublic = $(this).data('public')
+          let parent = $(this).parents('.admin-menu-item')
+          let el = $(this)
+          $.ajax({
+            method: 'patch',
+            url: '/posts/' + id,
+            data: {
+              id,
+              isPublic
+            },
+            success: function (res) {
+              el.text(isPublic ? '隐藏' : '发布')
+              el.data('public', !isPublic)
+              parent.find('.public').html(isPublic ? '<i class="far fa-eye">' : '<i class="far fa-eye-slash">')
+            }
+          })
+        })

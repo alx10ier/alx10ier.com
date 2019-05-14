@@ -485,6 +485,7 @@ header.curtain .subtitle {
   border-bottom: 0 solid #f4f4f4;
 }
 .navbar .navbar-brand {
+  cursor: pointer;
   align-items: center;
   font-family: "Poiret One", "PingFang SC", cursive;
 }
@@ -498,7 +499,7 @@ header.curtain .subtitle {
   padding: 0 1rem;
 }
 .navbar .navbar-menu-wide .navbar-item {
-  padding: 0 2.5rem;
+  padding: 0 2rem;
 }
 .navbar .navbar-menu-wide .navbar-item:not(:first-child) {
   border-left: 1px solid #DAA520;
@@ -639,6 +640,73 @@ header.curtain .subtitle {
   background: #f4f4f4;
 }
 
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+}
+.admin-toolbar > * {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  background-color: #f4f4f4;
+  border-radius: 3px;
+  margin-right: 1rem;
+}
+
+.admin-panel {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.admin-menu {
+  border-left: 3px solid #DAA520;
+}
+.admin-menu .admin-menu-item {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+.admin-menu .admin-menu-item input {
+  margin: 0 1rem;
+}
+.admin-menu .admin-menu-item .date {
+  width: 8rem;
+}
+.admin-menu .admin-menu-item .id {
+  width: 15rem;
+}
+.admin-menu .admin-menu-item .title {
+  width: 12rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-menu .admin-menu-item .public {
+  width: 5rem;
+}
+.admin-menu .admin-menu-item .actions > a {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  margin: 0 0.25rem;
+  border-radius: 3px;
+  background-color: #f4f4f4;
+}
+.admin-menu .admin-menu-item .actions .delete {
+  background-color: #ea5e3d;
+  color: white;
+}
+
+.admin-title {
+  padding: 1rem 0;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.admin-title span {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
 .edit-main {
   height: 100%;
 }
@@ -717,7 +785,7 @@ header.curtain .subtitle {
 
 .config {
   display: none;
-  padding: 3rem 1rem;
+  padding: 3rem 0;
   background: #f8f9fa;
   overflow: scroll;
 }

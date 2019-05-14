@@ -78,4 +78,10 @@ block content
                                 each category in categories
                                     .dropdown-item=category.name
                 .form-item
+                    label 垃圾状态
+                        .switch
+                            input(type='checkbox' name='public' hidden checked= post ? (!!post.public) : true)
+                            span.slider
+                    .default.public= post ? (post.public ? '公开' : '隐藏') : '公开'
+                .form-item
                     input(type='submit' value='⇨ 倾倒垃圾')

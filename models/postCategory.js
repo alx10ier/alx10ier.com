@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
+const Post = require('./post')
 
 const postCategorySchema = mongoose.Schema({
-  name: String
+  name: String,
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
 })
 
 let PostCategory = mongoose.model('PostCategory', postCategorySchema)

@@ -24,7 +24,7 @@ function getAbs(source) {
 
 module.exports = {
   create: async (ctx, next) => {
-    let { author, time, category, title, source, content } = ctx.request.body
+    let { author, time, category, title, source, content, isPublic } = ctx.request.body
     author = await User.findOne({ username: author })
     if (await PostCategory.findOne({ name: category })) { // check if category already exists
       category = await PostCategory.findOne({ name: category })
@@ -34,7 +34,7 @@ module.exports = {
       })
     }
     const abs = getAbs(source)
-    const timestamp = Date.parse(time) / 1000
+    const timestamp = Date.parse(time)
 
     const newPost = new Post({
       author,
@@ -44,8 +44,10 @@ module.exports = {
       title,
       abs,
       source,
-      content
+      content,
+      public: isPublic
     })
+    category.posts.push(newPost)
     category.save()
     newPost.save()
     ctx.body = {
@@ -55,8 +57,8 @@ module.exports = {
     await next()
   },
 
-  update: async (ctx, next) => {
-    let { id, author, time, category, title, source, content } = ctx.request.body
+  cover: async (ctx, next) => {
+    let { id, author, time, category, title, source, content, isPublic } = ctx.request.body
     author = await User.findOne({ username: author })
     if (await PostCategory.findOne({ name: category })) { // check if category already exists
       category = await PostCategory.findOne({ name: category })
@@ -66,9 +68,9 @@ module.exports = {
       })
     }
     const abs = getAbs(source)
-    const timestamp = Date.parse(time) / 1000
+    const timestamp = Date.parse(time)
 
-    await Post.findOneAndUpdate({ _id: id }, {
+    await Post.updateOne({ _id: id }, {
       author,
       time,
       timestamp,
@@ -76,7 +78,8 @@ module.exports = {
       title,
       abs,
       source,
-      content
+      content,
+      public: isPublic
     })
     category.save()
     ctx.body = {
@@ -88,10 +91,30 @@ module.exports = {
   },
 
   remove: async (ctx, next) => {
-
+    let id = ctx.params.id
+    let post = await Post.findOneAndRemove({ _id: id }).populate('category')
+    let category = post.category
+    category.posts = category.posts.filter(x => x._id.toString() !== id)
+    await category.save()
+    if (category.posts.length === 0) {
+      await category.remove()
+    }
+    ctx.body = {
+      result: 'success',
+      id
+    }
+    await next()
   },
 
-  show: async (ctx, next) => {
-
+  update: async (ctx, next) => {
+    let { id, isPublic } = ctx.request.body
+    await Post.updateOne({ _id: id }, {
+      public: isPublic
+    })
+    ctx.body = {
+      result: 'success',
+      id
+    }
+    await next()
   }
 }

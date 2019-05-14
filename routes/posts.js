@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 const router = new Router()
 const ensure = require('../assists/ensureAuthenticate')
-const { create, update, remove } = require('../controllers/post')
+const { create, cover, update, remove } = require('../controllers/post')
 const PostCategory = require('../models/postCategory')
 const Post = require('../models/post')
 
@@ -16,8 +16,8 @@ router.get('/new', ensure,async ctx => {
 
 router.get('/:id', async (ctx, next) => {
   try {
-    let post = await Post.findById(ctx.params.id)
-    if (post) {
+    let post = await Post.findById(ctx.params.id).populate('category')
+    if (post && (post.public || ctx.isAuthenticated())) {
       await ctx.render('posts/post', { post: post, user: ctx.state.user })
     } else {
       await next()
@@ -34,7 +34,7 @@ router.get('/:id', async (ctx, next) => {
 router.get('/:id/edit', ensure,async (ctx, next) => {
   let categories = await PostCategory.find({})
   try {
-    let post = await Post.findById(ctx.params.id)
+    let post = await Post.findById(ctx.params.id).populate('category author')
     if (post) {
       await ctx.render('posts/edit', { post: post, categories: categories })
     } else {
@@ -49,10 +49,12 @@ router.get('/:id/edit', ensure,async (ctx, next) => {
   }
 })
 
-router.post('/', create)
+router.post('/', ensure, create)
 
-router.put('/:id', update)
+router.put('/:id', ensure, cover)
 
-router.delete('/:id', remove)
+router.patch('/:id', ensure, update)
+
+router.delete('/:id', ensure, remove)
 
 module.exports = router

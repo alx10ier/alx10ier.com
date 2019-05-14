@@ -21,6 +21,9 @@ router.post('/login', passport.authenticate('local', {
 )
 
 router.get('/login', async ctx => {
+  if (ctx.isAuthenticated()) {
+    await ctx.redirect('/')
+  }
   await ctx.render('login', { error: ctx.flash('error') })
 })
 

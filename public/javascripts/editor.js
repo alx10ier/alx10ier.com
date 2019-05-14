@@ -66,6 +66,14 @@ $('input[name="is-new-category"]').on('click', function () {
   }
 })
 
+$('input[name="public"]').on('click', function () {
+  if ($(this).prop("checked")) {
+    $('.public').text('公开')
+  } else {
+    $('.public').text('隐藏')
+  }
+})
+
 $('input[name="title"]').on('input', function () {
   $('.preview .title').text($(this).val() || "未命名")
 })
@@ -134,6 +142,7 @@ $('form.config').submit(function () {
   let author = $('input[name="author"]').val().trim()
   let source = codeMirror.getValue()
   let content = $('.preview .content').html()
+  let isPublic = $('input[name="public"]').prop('checked')
   if (!title) {
     error = '请输入名称'
   } else if (!time) {
@@ -155,10 +164,10 @@ $('form.config').submit(function () {
         category,
         title,
         source,
-        content
+        content,
+        isPublic
       },
       success: function (res) {
-        console.log(res)
         if (res.result === 'success') {
           window.location.href = '/posts/' + res.id
         }
@@ -175,10 +184,10 @@ $('form.config').submit(function () {
         category,
         title,
         source,
-        content
+        content,
+        isPublic
       },
       success: function (res) {
-        console.log(res)
         if (res.result === 'success') {
           window.location.href = '/posts/' + res.id
         }
