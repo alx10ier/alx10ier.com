@@ -61,7 +61,7 @@ router.use('/posts', posts.routes())
 router.use('/users', users.routes())
 router.use('/admin', admin.routes())
 
-http.createServer(app.callback().listen(3000), () => console.log('HTTP listening on port 3000'))
+http.createServer(app.callback()).listen(3000, () => console.log('HTTP listening on port 3000'))
 https.createServer(app.callback()).listen(3001, () => console.log('HTTPS listening on port 3001'));
 
 //app.listen(3000, () => console.log('Listening on port 3000'))
