@@ -1,6 +1,6 @@
 const Router = require('koa-router')
 const router = new Router()
-const PostCategory = require('../models/postCategory')
+const PostCategory = require('../models/PostCategory')
 const ensure = require('../assists/ensureAuthenticate')
 
 router.get('/', ensure,async ctx => {

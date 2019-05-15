@@ -6,6 +6,7 @@ html
         block stylesheets
             link(rel='stylesheet' href='/stylesheets/style.css')
             link(rel='stylesheet' href='https://unpkg.com/highlightjs@9.12.0/styles/atom-one-light.css')
+            link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous")
         block javascripts
             script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")
     body
@@ -42,6 +43,8 @@ html
                                     .category: a=post.category.name
                                 .content
                                     | !{post.abs}
+                                .continue: a(href='/posts/' + post.id) 继续阅读
+                                    i.fas.fa-angle-right
                 else
                     div 什么也没有哦...
                 if pageTotal > 1

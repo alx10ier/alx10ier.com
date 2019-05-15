@@ -1,6 +1,6 @@
-const Post = require('../models/post')
-const PostCategory = require('../models/postCategory')
-const User = require('../models/user')
+const Post = require('../models/Post')
+const PostCategory = require('../models/PostCategory')
+const User = require('../models/User')
 const marked = require('marked')
 const hljs = require('highlight.js')
 marked.setOptions({
@@ -57,7 +57,7 @@ module.exports = {
     await next()
   },
 
-  cover: async (ctx, next) => {
+  replace: async (ctx, next) => {
     let { id, author, time, category, title, source, content, isPublic } = ctx.request.body
     author = await User.findOne({ username: author })
     if (await PostCategory.findOne({ name: category })) { // check if category already exists
@@ -70,7 +70,17 @@ module.exports = {
     const abs = getAbs(source)
     const timestamp = Date.parse(time)
 
-    await Post.updateOne({ _id: id }, {
+    let post = await Post.findById(id).populate('category')
+    const oldCategory = post.category
+    if (oldCategory !== category) {
+      oldCategory.posts = oldCategory.posts.filter(x => x._id.toString() !== id)
+    }
+    await oldCategory.save()
+    if (oldCategory.posts.length === 0) {
+      oldCategory.remove()
+    }
+
+    post = await Post.findOneAndUpdate({ _id: id }, {
       author,
       time,
       timestamp,
@@ -81,6 +91,7 @@ module.exports = {
       content,
       public: isPublic
     })
+    category.posts.push(post)
     category.save()
     ctx.body = {
       result: 'success',
@@ -97,7 +108,7 @@ module.exports = {
     category.posts = category.posts.filter(x => x._id.toString() !== id)
     await category.save()
     if (category.posts.length === 0) {
-      await category.remove()
+      category.remove()
     }
     ctx.body = {
       result: 'success',

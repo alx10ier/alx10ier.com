@@ -1,9 +1,9 @@
 const Router = require('koa-router')
 const router = new Router()
 const ensure = require('../assists/ensureAuthenticate')
-const { create, cover, update, remove } = require('../controllers/post')
-const PostCategory = require('../models/postCategory')
-const Post = require('../models/post')
+const { create, replace, update, remove } = require('../controllers/post')
+const PostCategory = require('../models/PostCategory')
+const Post = require('../models/Post')
 
 router.get('/', async ctx => {
   await ctx.render('posts/all')
@@ -51,7 +51,7 @@ router.get('/:id/edit', ensure,async (ctx, next) => {
 
 router.post('/', ensure, create)
 
-router.put('/:id', ensure, cover)
+router.put('/:id', ensure, replace)
 
 router.patch('/:id', ensure, update)
 

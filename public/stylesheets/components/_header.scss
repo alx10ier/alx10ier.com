@@ -1,10 +1,12 @@
+@import "../variables";
+
 .header {
-  border-bottom: 2px solid #f4f4f4;
+  border-bottom: 2px solid $sand;
   padding: 1rem 0;
   .info {
     padding-left: 1rem;
     margin-left: 1rem;
-    border-left: 3px solid #DAA520;
+    border-left: 3px solid $orange;
     .location {
       font-weight: bold;
     }

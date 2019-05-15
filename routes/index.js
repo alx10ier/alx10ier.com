@@ -1,6 +1,6 @@
 const Router = require('koa-router')
 const router = new Router()
-const Post = require('../models/post')
+const Post = require('../models/Post')
 
 router.get('/', async ctx => {
   const limit = 5

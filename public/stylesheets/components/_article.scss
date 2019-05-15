@@ -1,10 +1,12 @@
+@import "../variables";
+
 .post {
   position: relative;
   line-height: 2rem;
   font-family: "Raleway", 'PingFang SC', sans-serif;
   pre {
     border-radius: 5px;
-    background: #eff0f1;
+    background: $athens-grey;
     padding: 1rem 0.8rem;
     margin-bottom: 1rem;
     font-size: 1rem;
@@ -27,7 +29,7 @@
 
   blockquote {
     padding-left: 1.5rem;
-    border-left: 5px solid #48beb7;
+    border-left: 5px solid $tiffany-blue;
     font-style: italic;
   }
 
@@ -37,7 +39,7 @@
       position: absolute;
       left: -1rem;
       content: "-";
-      color: #DAA520;
+      color: $orange;
       font-weight: 700;
       margin-right: 0.5rem;
       line-height: 2rem;
@@ -50,7 +52,7 @@
     li::before {
       content: counter(item) ".";
       counter-increment: item;
-      color: #DAA520;
+      color: $orange;
       font-weight: 700;
       margin-right: 0.5rem;
       font-family: "Ubuntu Mono", monospace;
@@ -86,7 +88,7 @@
     position: relative;
     &::before{
       content: "＊";
-      color: #DAA520;
+      color: $orange;
       font-weight: 700;
       position: absolute;
       top: 0;
@@ -113,7 +115,7 @@
   .time {
     padding-right: 1rem;
     margin-right: 1rem;
-    border-right: 2px solid #DAA520;
+    border-right: $orange-border;
   }
   .edit-icon {
     position: absolute;
@@ -121,7 +123,7 @@
     top: 1.5rem;
     padding: 0 1rem;
     border-radius: 5px;
-    background: #f4f4f4;
+    background: $athens-grey;
   }
 }
 
@@ -130,9 +132,17 @@
     padding: 3rem 0;
   }
   > *:not(:last-child) {
-    border-bottom: 2px solid #f4f4f4;
+    border-bottom: 2px solid $athens-grey;
   }
   > .post .information {
     margin-bottom: 2rem;
+  }
+  > .post .continue a {
+    font-weight: bold;
+    color: $jade;
+    font-size: 0.9rem;
+    i {
+      margin-left: 0.5rem;
+    }
   }
 }

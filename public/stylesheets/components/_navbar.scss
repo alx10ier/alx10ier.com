@@ -1,8 +1,10 @@
+@import "../variables";
+
 .navbar {
   @extend .columns;
   width: 100%;
   padding: 0.5rem 3rem;
-  border-bottom: 0 solid #f4f4f4;
+  border-bottom: 0 solid $sand;
   .navbar-brand {
     @extend .columns;
     cursor: pointer;
@@ -23,7 +25,7 @@
     .navbar-item {
       padding: 0 2rem;
       &:not(:first-child) {
-        border-left: 1px solid #DAA520;
+        border-left: 1px solid $orange;
       }
     }
   }
@@ -51,7 +53,7 @@
 
 .navbar.fixed-top, .navbar.sticky-top {
   background-color: white;
-  border-bottom: 2px solid #f4f4f4;
+  border-bottom: 2px solid $sand;
   z-index: 1;
 }
 

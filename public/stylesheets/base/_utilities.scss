@@ -1,3 +1,5 @@
+@import "../variables";
+
 .centered {
   display: flex;
   justify-content: center;
@@ -45,8 +47,8 @@
 }
 
 .error {
-  color: #D8000C;
-  background-color: #FFD2D2;
+  color: $flame;
+  background-color: $athens-grey;
   padding: 0.5rem 1rem;
   border-radius: 3px;
 }

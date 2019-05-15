@@ -1,7 +1,9 @@
+@import "../variables";
+
 html,
 body {
   height: 100%;
-  color: #272727;
+  color: $dark;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -34,12 +36,12 @@ h6 {
 }
 
 a {
-  color: #45516e;
+  color: $astronaut;
   transition: color 0.3s ease;
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    color: #DAA520;
+    color: $orange;
   }
 }
 

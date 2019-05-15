@@ -1,7 +1,9 @@
+@import "../variables";
+
 .form {
   fieldset {
     padding: 1rem 3rem;
-    border: 1px solid #272727;
+    border: 1px solid $dark;
   }
   legend {
     padding: 1rem;
@@ -18,7 +20,7 @@
     }
     input {
       outline: none;
-      color: #272727;
+      color: $dark;
       font-size: 0.9rem;
       font-family: "Raleway", "PingFang SC", sans-serif;
     }
@@ -44,7 +46,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: $athens-grey;
     -webkit-transition: .4s;
     transition: .4s;
     //border-radius: 10rem;
@@ -66,7 +68,7 @@
   }
 
   input:checked + .slider {
-    background-color: #DAA520;
+    background-color: $orange;
   }
 
   input:checked + .slider:before {
@@ -97,6 +99,6 @@
     display: none;
   }
   .dropdown-item:hover {
-    background: #f4f4f4;
+    background: $athens-grey;
   }
 }

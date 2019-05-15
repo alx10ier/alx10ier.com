@@ -127,7 +127,7 @@ a {
   cursor: pointer;
 }
 a:hover {
-  color: #DAA520;
+  color: #daa520;
 }
 
 main {
@@ -177,8 +177,8 @@ main {
 }
 
 .error {
-  color: #D8000C;
-  background-color: #FFD2D2;
+  color: #ea5e3d;
+  background-color: #eff0f1;
   padding: 0.5rem 1rem;
   border-radius: 3px;
 }
@@ -380,7 +380,7 @@ header.curtain .subtitle {
   position: absolute;
   left: -1rem;
   content: "-";
-  color: #DAA520;
+  color: #daa520;
   font-weight: 700;
   margin-right: 0.5rem;
   line-height: 2rem;
@@ -392,7 +392,7 @@ header.curtain .subtitle {
 .post ol li::before {
   content: counter(item) ".";
   counter-increment: item;
-  color: #DAA520;
+  color: #daa520;
   font-weight: 700;
   margin-right: 0.5rem;
   font-family: "Ubuntu Mono", monospace;
@@ -424,7 +424,7 @@ header.curtain .subtitle {
 }
 .post h2::before {
   content: "＊";
-  color: #DAA520;
+  color: #daa520;
   font-weight: 700;
   position: absolute;
   top: 0;
@@ -446,7 +446,7 @@ header.curtain .subtitle {
 .post .time {
   padding-right: 1rem;
   margin-right: 1rem;
-  border-right: 2px solid #DAA520;
+  border-right: 3px solid #daa520;
 }
 .post .edit-icon {
   position: absolute;
@@ -454,17 +454,25 @@ header.curtain .subtitle {
   top: 1.5rem;
   padding: 0 1rem;
   border-radius: 5px;
-  background: #f4f4f4;
+  background: #eff0f1;
 }
 
 .post-previews > * {
   padding: 3rem 0;
 }
 .post-previews > *:not(:last-child) {
-  border-bottom: 2px solid #f4f4f4;
+  border-bottom: 2px solid #eff0f1;
 }
 .post-previews > .post .information {
   margin-bottom: 2rem;
+}
+.post-previews > .post .continue a {
+  font-weight: bold;
+  color: #00ac79;
+  font-size: 0.9rem;
+}
+.post-previews > .post .continue a i {
+  margin-left: 0.5rem;
 }
 
 .header {
@@ -474,7 +482,7 @@ header.curtain .subtitle {
 .header .info {
   padding-left: 1rem;
   margin-left: 1rem;
-  border-left: 3px solid #DAA520;
+  border-left: 3px solid #daa520;
 }
 .header .info .location {
   font-weight: bold;
@@ -503,7 +511,7 @@ header.curtain .subtitle {
   padding: 0 2rem;
 }
 .navbar .navbar-menu-wide .navbar-item:not(:first-child) {
-  border-left: 1px solid #DAA520;
+  border-left: 1px solid #daa520;
 }
 
 @media screen and (max-width: 767px) {
@@ -587,7 +595,7 @@ header.curtain .subtitle {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #eff0f1;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 3px;
@@ -605,7 +613,7 @@ header.curtain .subtitle {
   border-radius: 3px;
 }
 .switch input:checked + .slider {
-  background-color: #DAA520;
+  background-color: #daa520;
 }
 .switch input:checked + .slider:before {
   -webkit-transform: translateX(0.8rem);
@@ -638,7 +646,7 @@ header.curtain .subtitle {
   display: none;
 }
 .dropdown .dropdown-item:hover {
-  background: #f4f4f4;
+  background: #eff0f1;
 }
 
 .admin-toolbar {
@@ -648,7 +656,7 @@ header.curtain .subtitle {
 .admin-toolbar > * {
   cursor: pointer;
   padding: 0.25rem 0.5rem;
-  background-color: #f4f4f4;
+  background-color: #eff0f1;
   border-radius: 3px;
   margin-right: 1rem;
 }
@@ -658,7 +666,7 @@ header.curtain .subtitle {
 }
 
 .admin-menu {
-  border-left: 3px solid #DAA520;
+  border-left: 3px solid #daa520;
 }
 .admin-menu .admin-menu-item {
   margin-bottom: 1rem;
@@ -690,7 +698,7 @@ header.curtain .subtitle {
   padding: 0.2rem 0.5rem;
   margin: 0 0.25rem;
   border-radius: 3px;
-  background-color: #f4f4f4;
+  background-color: #eff0f1;
 }
 .admin-menu .admin-menu-item .actions .delete {
   background-color: #ea5e3d;
