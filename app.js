@@ -32,7 +32,7 @@ app.keys = ['nothing is true'] // TODO put into secrets
 app.use(error())
 app.use(flash())
 app.use(logger())
-app.use(serve(__dirname + '/public'))
+app.use(serve(__dirname + '/public', { hidden: true }))
 app.use(views(__dirname + '/views', { extension: 'pug' }))
 app.use(favicon(__dirname + '/public/images/favicon.ico'))
 app.use(session(app)) // TODO config session
