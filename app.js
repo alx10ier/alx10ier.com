@@ -1,9 +1,6 @@
 const Koa = require('koa')
 const Router = require('koa-router')
 
-const fs = require('fs')
-const http = require('http')
-const https = require('https')
 
 const views = require('koa-views')  // need to install pug for .pug rendering
 const serve = require('koa-static')
@@ -23,16 +20,6 @@ const index = require('./routes/index')
 const posts = require('./routes/posts')
 const users = require('./routes/users')
 const admin = require('./routes/admin')
-
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/alx10ier.com/privkey.pem', 'utf8')
-const certificate = fs.readFileSync('/etc/letsencrypt/live/alx10ier.com/cert.pem', 'utf8')
-const ca = fs.readFileSync('/etc/letsencrypt/live/alx10ier.com/chain.pem', 'utf8')
-
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca
-}
 
 const app = new Koa()
 const router = new Router()
@@ -61,7 +48,4 @@ router.use('/posts', posts.routes())
 router.use('/users', users.routes())
 router.use('/admin', admin.routes())
 
-http.createServer(app.callback()).listen(3000, () => console.log('HTTP listening on port 3000'))
-https.createServer(app.callback()).listen(3001, () => console.log('HTTPS listening on port 3001'));
-
-//app.listen(3000, () => console.log('Listening on port 3000'))
+app.listen(3000, () => console.log('Listening on port 3000'))
